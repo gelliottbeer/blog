@@ -19,7 +19,7 @@
 			}
 			catch(httpMissingException $missingException) {
 				$response->unsetHeadersArray()
-					->setCode(400)
+					->setCode(404)
 					->setContent(NULL);
 			}
 			catch(httpRedirectException $redirectException) {
