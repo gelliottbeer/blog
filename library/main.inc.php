@@ -15,6 +15,7 @@
 				$response = httpResponse::init();
 				$controller = httpRoute::init()->getController();
 				$method = httpRoute::init()->getMethod();
+				controller::$controller($method);
 			}
 			catch(httpMissingException $missingException) {
 				$response->unsetHeadersArray()
@@ -25,7 +26,7 @@
 				$response->unsetHeadersArray()
 					->setCode(303)
 					->setContent(NULL)
-					->setHeader('Location', $redirectException->getLocation())
+					->setHeader('Location', $redirectException->getLocation());
 			}
 			catch(httpAuthenticationException $authenticationException) {
 				$response->unsetHeadersArray()

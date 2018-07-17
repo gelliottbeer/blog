@@ -7,12 +7,20 @@
 		private $method;
 		private $viewFilepath;
 
-		public function __call($controller, $args) {
+		public function __construct($controller, $method) {
 
 			$this->__initControllerClass($controller)
 				->__initModelClass($controller)
 				->__initMethod($method)
 				->__initViewFilepath($controller, $method);
+
+		}
+
+		public static function __callStatic($controller, $args) {
+
+			$method = @$args[0];
+			$self = new static($controller, $method);
+			return $self;
 
 		}
 
