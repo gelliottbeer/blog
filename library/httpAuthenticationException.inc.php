@@ -1,6 +1,6 @@
 <?php
 
-	class httpRedirectException extends Exception {
+	class httpAuthenticationException extends Exception {
 
 		private $location;
 
