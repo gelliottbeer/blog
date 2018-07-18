@@ -122,6 +122,8 @@
 							$model = new $modelClass;
 							$controller = new $controllerClass;
 							$controller->model = $model;
+							$method = $this->getMethod();
+							$controller->$method();
 							include($this->getViewFilepath());
 						}
 					}

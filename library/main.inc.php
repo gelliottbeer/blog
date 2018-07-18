@@ -15,7 +15,9 @@
 				$response = httpResponse::init();
 				$controller = httpRoute::init()->getController();
 				$method = httpRoute::init()->getMethod();
+				ob_start();
 				controller::$controller($method);
+				$response->setContent(ob_get_clean());
 			}
 			catch(httpMissingException $missingException) {
 				$response->unsetHeadersArray()
@@ -42,6 +44,7 @@
 					->setCode(403)
 					->setContent(NULL);
 			}
+			while(ob_get_level() > 1) ob_end_clean();
 			$response->sendAll();
 
 		}

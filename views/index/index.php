@@ -1,0 +1,3 @@
+<?php
+
+	sprite::foo();
